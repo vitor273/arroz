@@ -27,6 +27,27 @@ void loop()
 digitalWrite(vm1,HIGH);
 delay(20);
 digitalWrite(vm2,HIGH);
+
+  //Com for
+
+  int vm = 2;
+
+void setup() 
+{
+pinMode(vm,OUTPUT);
+}
+void loop() 
+{
+for (int i = 0; i < 6; i++)
+{}
+digitalWrite(vm, HIGH);
+delay(200);
+digitalWrite(LED, LOW)
+delay(200);
+}
+delay(1000);
+}
+
 delay(30);
 digitalWrite(vm3,HIGH);
 delay(40);
