@@ -1,0 +1,57 @@
+// botão dupla função
+int botao = 2;
+int led = 13;
+int estadobotao = 0;
+int estadoled = 0;
+int anterior = 0;
+
+int botao2 = 4;
+int led2 = 12;
+int estadobotao2 = 0;
+int estadoled2 = 0;
+int anterior2 = 0;
+
+int botao3 = 5;
+int estadobotao3 = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(led, OUTPUT);
+  pinMode(botao,INPUT);// recebe pulso
+
+  pinMode(led2, OUTPUT);
+  pinMode(botao2,INPUT);// recebe pulso
+
+  pinMode(botao3,INPUT);// recebe pulso
+
+  estadoled= HIGH;
+  estadoled2= HIGH;
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  estadobotao = digitalRead(botao); 
+  estadobotao2 = digitalRead(botao2);
+  estadobotao3 = digitalRead(botao3);
+
+  if (estadobotao == HIGH && anterior == LOW){
+    estadoled=!estadoled;
+  }
+   
+  if (estadobotao2 == HIGH && anterior2 == LOW){
+    estadoled2=!estadoled2;
+  }
+
+  if (estadobotao3 == HIGH){
+    estadoled= HIGH;
+    estadoled2= HIGH;
+  }
+
+  digitalWrite(led, estadoled);
+  digitalWrite(led2, estadoled2);
+
+  anterior2 =estadobotao2;
+  anterior =estadobotao;
+  
+  delay(200);
+}
