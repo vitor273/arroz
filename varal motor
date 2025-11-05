@@ -1,0 +1,60 @@
+nt btn1 = 8;
+int btn2 = 9;
+int btn3 = 10;
+int led1 = 11;
+int led2 = 12;
+int led3 = 13;
+int s_up = 2;
+int s_donw = 3;
+int sensor1 = 4;
+int sensor2 = 5;
+
+void setup() {
+ pinMode(btn1, INPUT);
+ pinMode(btn2, INPUT);
+ pinMode(btn3, INPUT);
+ pinMode(led1, OUTPUT);
+ pinMode(led2, OUTPUT);
+ pinMode(led3, OUTPUT);
+ pinMode(s_up, INPUT);
+ pinMode(s_donw, INPUT);
+
+ digitalWrite(led1, HIGH);
+ digitalWrite(led2, HIGH);
+ digitalWrite(led3, HIGH);
+ digitalWrite(s_up, HIGH);
+ digitalWrite(s_donw, HIGH);
+ delay(2000);
+ digitalWrite(led1, LOW);
+ digitalWrite(led2, LOW);
+
+ Serial.begin(9600);
+ }
+
+void loop() {
+ if(digitalRead(btn1))
+ {
+  digitalWrite(led1, HIGH);
+  digitalWrite(led3, LOW);
+  digitalWrite(s_up, HIGH);
+  digitalWrite(s_donw, LOW);
+ }
+  if(digitalRead(btn2))
+ {
+  digitalWrite(led2, HIGH);
+  digitalWrite(led3, LOW);
+  digitalWrite(s_up, LOW);
+  digitalWrite(s_donw, HIGH);
+ }
+
+  if(digitalRead(btn3))
+ {
+  digitalWrite(led3, HIGH);
+  digitalWrite(led1, LOW);
+  digitalWrite(led2, LOW);
+  digitalWrite(s_up, LOW);
+  digitalWrite(s_donw, LOW);
+
+ 
+ }
+}
