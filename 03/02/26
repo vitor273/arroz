@@ -1,0 +1,47 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
+
+void setup() 
+{
+lcd.begin(16, 2);
+lcd.print("Leitura Botao");
+delay(1000);
+lcd.clear();
+}
+
+void loop() 
+{
+  
+int leitura = analogRead(A0);
+lcd.setCursor(0,1);
+
+if(leitura >= 0 && leitura < 50)
+{
+   lcd.print("Direita   ");
+}
+
+if(leitura >= 51 && leitura < 200)
+{
+   lcd.print("Cima   ");
+}
+
+if(leitura >= 201 && leitura < 400)
+{
+   lcd.print("Baixo   ");
+}
+
+if(leitura >= 401 && leitura < 600)
+{
+   lcd.print("Esquerda   ");
+}
+
+else if(leitura >= 601 && leitura < 800)
+{
+   lcd.print("Selesionar   ");
+}
+
+else(leitura >= 801);
+{
+    lcd.print("Nada   ");
+}
+}
