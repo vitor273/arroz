@@ -1,0 +1,59 @@
+/*
+LEITURA DA UMIDADE DO SENSOR DHT11
+ENVIO DOS DADOS POR BLUETOOTH (HC-05)
+*/
+
+#include <SoftwareSerial.h>
+#include "DHT.h"
+
+// Cria comunicação serial para o módulo Bluetooth
+SoftwareSerial bluetooth(2, 3);
+// pino 2 = RX do Arduino
+// pino 3 = TX do Arduino
+
+DHT dht(4, DHT11);
+// Cria um objeto chamado "dht", dizendo que o sensor está ligado no pino 4
+// e que o sensor utilizado é do tipo DHT11
+
+void setup() {
+
+  Serial.begin(9600);
+  // Inicia comunicação com o Monitor Serial
+
+  bluetooth.begin(9600);
+  // Inicia comunicação com o módulo Bluetooth
+
+  dht.begin();
+  // Inicializa o sensor DHT11
+}
+
+void loop() {
+
+  float umidade = dht.readHumidity();
+  float temperatura = dht.readTemperature();
+  // Lê a umidade do sensor e guarda na variável "umidade"
+
+ if (isnan(temperatura) || isnan(umidade)) {
+    // Verifica se algum dos valores está errado (NaN = Not a Number, ou seja, leitura falhou)
+
+    Serial.println("Erro ao ler o sensor!");
+    return;
+  }
+
+ 
+  Serial.print("Temperatura: ");
+  Serial.print(temperatura);
+  Serial.println(" °C");
+
+   Serial.print("Umidade: ");
+  Serial.print(umidade);
+  Serial.println(" %");
+
+  Serial.println("Dados enviados por Bluetooth");
+
+  bluetooth.print(umidade);
+   bluetooth.print(temperatura);
+ 
+
+  delay(3000);
+}
